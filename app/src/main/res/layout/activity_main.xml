@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <cn.com.egova.examapp.test.RankView
+            android:id="@+id/rank_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemBottomTextColor="@android:color/holo_blue_bright"
+            app:itemBottomTextSize="16sp"
+            app:itemRectHeight="40dp"
+            app:itemHorizontalSpace="10dp"
+            app:itemLeftTextColor="@android:color/holo_purple"
+            app:itemLeftTextSize="16sp"
+            app:itemRightTextColor="@android:color/holo_red_dark"
+            app:itemRightTextSize="16sp"
+            app:itemVeticalSpace="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="Hello World!" />
+
+    </LinearLayout>
+</ScrollView>

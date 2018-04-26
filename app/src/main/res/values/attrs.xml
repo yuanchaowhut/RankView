@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- RankView的属性 -->
+    <declare-styleable name="rankView">
+        <!--每个Item的矩形标识条的高度-->
+        <attr name="itemRectHeight" format="dimension" />
+        <!--每个Item之间的垂直间距-->
+        <attr name="itemVeticalSpace" format="dimension" />
+        <!--Item矩形标识条与左右两边的文本的水平间距-->
+        <attr name="itemHorizontalSpace" format="dimension" />
+        <!--左边文本的大小-->
+        <attr name="itemLeftTextSize" format="dimension" />
+        <!--右边文本的大小-->
+        <attr name="itemRightTextSize" format="dimension" />
+        <!--底部文本的大小-->
+        <attr name="itemBottomTextSize" format="dimension" />
+        <!--左边文本的颜色-->
+        <attr name="itemLeftTextColor" format="color" />
+        <!--右边文本的颜色-->
+        <attr name="itemRightTextColor" format="color" />
+        <!--底部文本的颜色-->
+        <attr name="itemBottomTextColor" format="color" />
+
+    </declare-styleable>
+
+</resources>
