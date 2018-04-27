@@ -116,5 +116,5 @@
 
 # 缺陷及不足
 + Item底部的文本必须简明扼要，字数不可过多，因为本控件不支持文本换行；
-+ 控件的setData()方法要求传递的参数为List<Object>,集合的泛型为Object，目的是兼容所有实体类，
-  引发的问题是客户端获取数据集合后(假如为List<Student>)，必须将其转换为List<Object>。
++ 控件的setData()方法要求传递的参数为List\<Object\>,集合的泛型为Object，目的是兼容所有实体类，
+  引发的问题是客户端获取数据集合后(假如为List\<Student\>)，必须将其转换为List\<Object\>。
