@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.test;
+package cn.com.egova.examapp;
 
 import cn.com.egova.examapp.annotation.GradeColor;
 import cn.com.egova.examapp.annotation.Label;

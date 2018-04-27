@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.test;
+package cn.com.egova.examapp.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

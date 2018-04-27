@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.test;
+package cn.com.egova.examapp;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.com.egova.examapp.R;
+import cn.com.egova.examapp.view.RankView;
 
 public class MainActivity extends AppCompatActivity {
     private RankView rankView;
