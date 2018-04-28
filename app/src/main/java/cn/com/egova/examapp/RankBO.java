@@ -1,9 +1,10 @@
 package cn.com.egova.examapp;
 
-import cn.com.egova.examapp.annotation.GradeColor;
-import cn.com.egova.examapp.annotation.Label;
-import cn.com.egova.examapp.annotation.Order;
-import cn.com.egova.examapp.annotation.Value;
+
+import cn.com.egova.rankview.annotation.GradeColor;
+import cn.com.egova.rankview.annotation.Label;
+import cn.com.egova.rankview.annotation.Order;
+import cn.com.egova.rankview.annotation.Value;
 
 /**
  * Created by yuanchao on 2018/4/26.

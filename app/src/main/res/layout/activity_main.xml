@@ -11,7 +11,7 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <cn.com.egova.examapp.test.RankView
+        <cn.com.egova.rankview.view.RankView
             android:id="@+id/rank_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

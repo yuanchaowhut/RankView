@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.bean;
+package cn.com.egova.rankview.bean;
 
 /**
  * Created by yuanchao on 2018/4/26.

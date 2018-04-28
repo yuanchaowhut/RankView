@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.utils;
+package cn.com.egova.rankview.utils;
 
 import android.content.Context;
 import android.util.TypedValue;

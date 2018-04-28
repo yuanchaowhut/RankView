@@ -1,4 +1,4 @@
-package cn.com.egova.examapp.view;
+package cn.com.egova.rankview.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,13 +15,14 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.com.egova.examapp.R;
-import cn.com.egova.examapp.annotation.GradeColor;
-import cn.com.egova.examapp.annotation.Label;
-import cn.com.egova.examapp.annotation.Order;
-import cn.com.egova.examapp.annotation.Value;
-import cn.com.egova.examapp.bean.RankBean;
-import cn.com.egova.examapp.utils.DensityUtils;
+import cn.com.egova.rankview.R;
+import cn.com.egova.rankview.annotation.GradeColor;
+import cn.com.egova.rankview.annotation.Label;
+import cn.com.egova.rankview.annotation.Order;
+import cn.com.egova.rankview.annotation.Value;
+import cn.com.egova.rankview.bean.RankBean;
+import cn.com.egova.rankview.utils.DensityUtils;
+
 
 /**
  * Created by yuanchao on 2018/4/26.
