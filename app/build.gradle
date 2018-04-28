@@ -18,6 +18,12 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -26,6 +32,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //下面演示3种依赖方式：1.依赖project; 2.依赖生成的.aar文件； 3.在线依赖。
     implementation project(':rankview')
+//    implementation files('libs/rankview.aar')
 //    implementation 'com.github.yuanchaowhut:RankView:v1.0'
 }
