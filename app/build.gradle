@@ -27,4 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation project(':rankview')
+//    implementation 'com.github.yuanchaowhut:RankView:v1.0'
 }

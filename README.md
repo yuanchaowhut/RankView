@@ -26,7 +26,25 @@
 
 
 # 控件使用示例
-1. 布局文件
+1. 引入依赖
+
+    在项目工程的build.gradle添加如下代码：
+
+        allprojects {
+            repositories {
+                ...  //other repository
+                maven { url 'https://jitpack.io' }
+            }
+        }
+    }
+
+    在需要使用本控件的module的build.gradle添加如下代码：
+
+        dependencies {
+    	            implementation 'com.github.yuanchaowhut:RankView:v1.0'
+    	}
+
+2. 布局文件
 
        注意：在xml布局中可以不使用自定义属性，因为有默认值。
 
@@ -67,7 +85,7 @@
        </LinearLayout>
    </ScrollView>
 
-2. 实体类
+3. 实体类
 
        public class RankBO {
            @Order("排序")
@@ -86,7 +104,7 @@
            .........
        }
 
- 3. 模拟数据
+ 4. 模拟数据
 
         private List<Object> getMockData() {
                List<Object> list = new ArrayList<>();
@@ -107,7 +125,7 @@
                return list;
         }
 
-4. MainActivity
+5. MainActivity
 
         RankView rankView = findViewById(R.id.rank_view);
         List<Object> data = getMockData();
