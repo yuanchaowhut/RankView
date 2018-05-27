@@ -25,13 +25,5 @@
             app:itemRightTextSize="16sp"
             app:itemVeticalSpace="20dp" />
 
-        <Button
-            android:id="@+id/btnFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:text="Go FragActivity" />
-
     </LinearLayout>
 </ScrollView>
