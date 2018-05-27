@@ -1,14 +1,16 @@
 package cn.com.egova.examapp;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import cn.com.egova.rankview.view.RankView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private RankView rankView;
 
     @Override

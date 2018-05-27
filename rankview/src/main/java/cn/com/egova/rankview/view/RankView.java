@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -57,11 +56,11 @@ public class RankView extends View {
         this(context, null);
     }
 
-    public RankView(Context context, @Nullable AttributeSet attrs) {
+    public RankView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RankView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public RankView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
