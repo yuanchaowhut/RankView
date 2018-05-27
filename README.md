@@ -41,7 +41,7 @@
     在需要使用本控件的module的build.gradle添加如下代码：
 
         dependencies {
-    	            implementation 'com.github.yuanchaowhut:rankView:v1.1'
+    	            implementation 'com.github.yuanchaowhut:rankView:v1.2'
     	}
 
 2. 布局文件
