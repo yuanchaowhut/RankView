@@ -246,7 +246,8 @@ public class RankView extends View {
             this.maxRightTextWidth = widths[1];
             this.bottomTextHeight = getBottomTextHeight();
 
-            //刷新界面.
+            //刷新界面,因为我们需要重新走onMeasure(),故调用一下requestLayout(),但它不保证会调用onDraw(),故还需要invalidate()
+            requestLayout();
             invalidate();
         }
     }

@@ -24,19 +24,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnFrag = findViewById(R.id.btnFrag);
         btnFrag.setOnClickListener(this);
 
-        initData();
+        showRank();
     }
 
-    private void initData() {
-        new MyTask(new ICallBack<List<Object>>() {
-            @Override
-            public void onResult(int obj, List<Object> data) {
-                showRank(data);
-            }
-        }).execute();
-    }
-
-    private void showRank(List<Object> data) {
+    private void showRank() {
+        List<Object> data = Mock.getMockData();
         rankView.setData(data);
     }
 

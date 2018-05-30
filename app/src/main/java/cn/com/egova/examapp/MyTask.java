@@ -17,6 +17,11 @@ public class MyTask extends AsyncTask<Object,Void,List<Object>> {
 
     @Override
     protected List<Object> doInBackground(Object... objects) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<Object> data = Mock.getMockData();
         return data;
     }
