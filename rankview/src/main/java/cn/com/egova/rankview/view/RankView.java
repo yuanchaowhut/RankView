@@ -34,6 +34,7 @@ public class RankView extends View {
     private Context mContext;
     //属性
     private int itemRectHeight;                    //每个Item的矩形标识条的高度
+    private int itemRectColor;                    //每个Item的矩形标识条的颜色
     private int itemVeticalSpace;               //每个Item之间的垂直间距
     private int itemHorizontalSpace;           //Item矩形标识条与左右两边的文本的间距
     private int itemLeftTextSize;              //左边文本的大小
@@ -72,6 +73,7 @@ public class RankView extends View {
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.rankView);
         this.itemRectHeight = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRectHeight, DensityUtils.dp2px(mContext, 30));
+        this.itemRectColor = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRectColor, Color.GREEN);
         this.itemVeticalSpace = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemVeticalSpace, DensityUtils.dp2px(mContext, 20));
         this.itemHorizontalSpace = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemHorizontalSpace, DensityUtils.dp2px(mContext, 10));
         this.itemLeftTextSize = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemLeftTextSize, DensityUtils.sp2px(mContext, 16));
@@ -91,7 +93,7 @@ public class RankView extends View {
 
         paintRect = new Paint();
         paintRect.setAntiAlias(true);
-        paintRect.setColor(Color.RED);
+        paintRect.setColor(itemRectColor);
         paintRect.setStyle(Paint.Style.FILL);
 
         paintRight = new Paint();
@@ -146,7 +148,7 @@ public class RankView extends View {
             //2.draw rect with specified color
             left = left + maxLeftTextWidth + itemHorizontalSpace;   //这里使用最大文本宽度,是为了保证矩形标识条左对齐.
             right = left + bean.getPxValue();
-            paintRect.setColor(bean.getColor());
+            paintRect.setColor(bean.getColor() > 0 ? bean.getColor() : itemRectColor);
             canvas.drawRect(left, top, right, bottom, paintRect);
 
             //3.draw right text
@@ -233,7 +235,7 @@ public class RankView extends View {
             }
 
             if (!TextUtils.isEmpty(rankBean.getOrder()) && !TextUtils.isEmpty(rankBean.getLabel())
-                    && !TextUtils.isEmpty(rankBean.getValue()) && rankBean.getColor() != 0) {
+                    && !TextUtils.isEmpty(rankBean.getValue())) {
                 rankList.add(rankBean);
             }
         }

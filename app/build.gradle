@@ -34,5 +34,5 @@ dependencies {
     //下面演示3种依赖方式：1.依赖project; 2.依赖生成的.aar文件； 3.在线依赖。
     implementation project(':rankview')
 //    implementation files('libs/rankview.aar')
-//    implementation 'com.github.yuanchaowhut:RankView:v1.3'
+//    implementation 'com.github.yuanchaowhut:RankView:v1.4'
 }

@@ -4,6 +4,8 @@
     <declare-styleable name="rankView">
         <!--每个Item的矩形标识条的高度-->
         <attr name="itemRectHeight" format="dimension" />
+        <!--每个Item的矩形标的颜色-->
+        <attr name="itemRectColor" format="color" />
         <!--每个Item之间的垂直间距-->
         <attr name="itemVeticalSpace" format="dimension" />
         <!--Item矩形标识条与左右两边的文本的水平间距-->

@@ -27,6 +27,12 @@ public class RankBO {
         this.color = color;
     }
 
+    public RankBO(String order, String name, String value) {
+        this.order = order;
+        this.name = name;
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "RankBO{" +

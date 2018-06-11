@@ -28,7 +28,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private void showRank() {
-        List<Object> data = Mock.getMockData();
+        List<Object> data = Mock.getMockData2();
         rankView.setData(data);
     }
 
