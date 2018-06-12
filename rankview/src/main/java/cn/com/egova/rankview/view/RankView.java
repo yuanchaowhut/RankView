@@ -200,7 +200,7 @@ public class RankView extends View {
         if (data == null || data.size() == 0) {
             return;
         }
-
+        this.rankList.clear();   //每次setData时均clear一下.
         for (Object obj : data) {
             RankBean rankBean = new RankBean();
             Field[] fields = obj.getClass().getDeclaredFields();
