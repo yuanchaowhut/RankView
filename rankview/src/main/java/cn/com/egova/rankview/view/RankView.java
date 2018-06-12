@@ -148,7 +148,7 @@ public class RankView extends View {
             //2.draw rect with specified color
             left = left + maxLeftTextWidth + itemHorizontalSpace;   //这里使用最大文本宽度,是为了保证矩形标识条左对齐.
             right = left + bean.getPxValue();
-            paintRect.setColor(bean.getColor() > 0 ? bean.getColor() : itemRectColor);
+            paintRect.setColor(bean.getColor() == 0 ? itemRectColor:bean.getColor());
             canvas.drawRect(left, top, right, bottom, paintRect);
 
             //3.draw right text
