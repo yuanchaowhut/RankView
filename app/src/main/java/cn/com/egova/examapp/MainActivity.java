@@ -8,11 +8,12 @@ import android.widget.Button;
 
 import java.util.List;
 
-import cn.com.egova.rankview.view.RankView;
+import cn.com.egova.rankview.view.RankViewV2;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
-    private RankView rankView;
+//    private RankView rankView;
+    private RankViewV2 rankView;
     private Button btnFrag;
 
     @Override

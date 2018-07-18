@@ -23,6 +23,12 @@
         <!--底部文本的颜色-->
         <attr name="itemBottomTextColor" format="color" />
 
+        <!--################RankViewV2使用##################3-->
+        <!--左右两边文本的大小-->
+        <attr name="itemTextSize" format="dimension" />
+        <!--顶部文本与矩形条之间的垂直间距-->
+        <attr name="itemTopSpace" format="dimension" />
+        <attr name="itemRectUnderColor" format="color"></attr>
     </declare-styleable>
 
 </resources>

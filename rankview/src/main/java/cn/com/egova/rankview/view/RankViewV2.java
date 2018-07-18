@@ -27,41 +27,37 @@ import cn.com.egova.rankview.utils.DensityUtils;
  * Created by yuanchao on 2018/4/26.
  */
 
-public class RankView extends View {
-    private static final String TAG = "RankView";
+public class RankViewV2 extends View {
+    private static final String TAG = "RankViewV2";
 
     private List<RankBean> rankList = new ArrayList<>();
     private Context mContext;
     //属性
     private int itemRectHeight;                    //每个Item的矩形标识条的高度
-    private int itemRectColor;                    //每个Item的矩形标识条的颜色
-    private int itemVeticalSpace;               //每个Item之间的垂直间距
-    private int itemHorizontalSpace;           //Item矩形标识条与左右两边的文本的间距
-    private int itemLeftTextSize;              //左边文本的大小
-    private int itemRightTextSize;             //右边文本的大小
-    private int itemBottomTextSize;             //底部文本的大小
-    private int itemLeftTextColor;             //左边文本的颜色
-    private int itemRightTextColor;            //右边文本的颜色
-    private int itemBottomTextColor;           //底部文本的颜色
-    private float maxValue;                    //所有item中的value最大值，以它为基准100
-    private float maxLeftTextWidth;            //左边文本最大宽度
-    private float maxRightTextWidth;           //右边文本最大宽度
-    private float bottomTextHeight;           //底部文本的高度
+    private int itemRectColor;                     //每个Item的矩形标识条的颜色
+    private int itemRectUnderColor;                 //每个item的衬底色
+    private int itemVeticalSpace;                  //每个Item之间的垂直间距
+    private int itemTopSpace;                      //Item顶部文本与矩形条之间的垂直间距
+    private int itemTextSize;                      //左右两边文本的大小
+    private int itemLeftTextColor;                 //左边文本的颜色
+    private int itemRightTextColor;                //右边文本的颜色
+    private float maxValue;                        //所有item中的value最大值，以它为基准100
+    private float topTextHeight;                   //顶部文本的高度
 
     private Paint paintRect;
     private Paint paintLeft;
     private Paint paintRight;
-    private Paint paintBottom;
+    private Paint paintRectUnder; //底色
 
-    public RankView(Context context) {
+    public RankViewV2(Context context) {
         this(context, null);
     }
 
-    public RankView(Context context, AttributeSet attrs) {
+    public RankViewV2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RankView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RankViewV2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
@@ -74,37 +70,34 @@ public class RankView extends View {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.rankView);
         this.itemRectHeight = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRectHeight, DensityUtils.dp2px(mContext, 30));
         this.itemRectColor = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRectColor, Color.GREEN);
+        this.itemRectUnderColor = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRectUnderColor, Color.parseColor("#E3E4E5"));
         this.itemVeticalSpace = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemVeticalSpace, DensityUtils.dp2px(mContext, 20));
-        this.itemHorizontalSpace = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemHorizontalSpace, DensityUtils.dp2px(mContext, 10));
-        this.itemLeftTextSize = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemLeftTextSize, DensityUtils.sp2px(mContext, 16));
-        this.itemRightTextSize = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemRightTextSize, DensityUtils.sp2px(mContext, 16));
-        this.itemBottomTextSize = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemBottomTextSize, DensityUtils.sp2px(mContext, 16));
+        this.itemTopSpace = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemTopSpace, DensityUtils.dp2px(mContext, 10));
+        this.itemTextSize = typedArray.getDimensionPixelOffset(R.styleable.rankView_itemTextSize, DensityUtils.sp2px(mContext, 16));
         this.itemLeftTextColor = typedArray.getColor(R.styleable.rankView_itemLeftTextColor, Color.BLACK);
         this.itemRightTextColor = typedArray.getColor(R.styleable.rankView_itemRightTextColor, Color.BLACK);
-        this.itemBottomTextColor = typedArray.getColor(R.styleable.rankView_itemBottomTextColor, Color.BLACK);
-
     }
 
     private void initPaints() {
         paintLeft = new Paint();
         paintLeft.setAntiAlias(true);
         paintLeft.setColor(itemLeftTextColor);
-        paintLeft.setTextSize(itemLeftTextSize);
+        paintLeft.setTextSize(itemTextSize);
+
+        paintRight = new Paint();
+        paintRight.setAntiAlias(true);
+        paintRight.setColor(itemRightTextColor);
+        paintRight.setTextSize(itemTextSize);
 
         paintRect = new Paint();
         paintRect.setAntiAlias(true);
         paintRect.setColor(itemRectColor);
         paintRect.setStyle(Paint.Style.FILL);
 
-        paintRight = new Paint();
-        paintRight.setAntiAlias(true);
-        paintRight.setColor(itemRightTextColor);
-        paintRight.setTextSize(itemRightTextSize);
-
-        paintBottom = new Paint();
-        paintBottom.setAntiAlias(true);
-        paintBottom.setColor(itemBottomTextColor);
-        paintBottom.setTextSize(itemBottomTextSize);
+        paintRectUnder = new Paint();
+        paintRectUnder.setAntiAlias(true);
+        paintRectUnder.setColor(itemRectUnderColor);
+        paintRectUnder.setStyle(Paint.Style.FILL);
     }
 
 
@@ -117,7 +110,7 @@ public class RankView extends View {
         int hMode = MeasureSpec.getMode(heightMeasureSpec);
         int hSize = MeasureSpec.getSize(heightMeasureSpec);
         //因为item数量较多的情况下RankView的高度会超过一屏幕高度，故需要重新计算一下。注意，最后一个item不需要底部的垂直间距.
-        int calHSize = (int) (rankList.size() * (itemRectHeight + bottomTextHeight + itemVeticalSpace)) - itemVeticalSpace;
+        int calHSize = (int) (rankList.size() * (topTextHeight + itemTopSpace + itemRectHeight + itemVeticalSpace)) - itemVeticalSpace;
         hSize = hSize > calHSize ? hSize : calHSize;
         setMeasuredDimension(wSize, hSize);
         Log.i(TAG, "onMeasure()--wMode=" + wMode + ",wSize=" + wSize + ",hMode=" + hMode + ",hSize=" + hSize);
@@ -136,31 +129,29 @@ public class RankView extends View {
         for (int i = 0; i < rankList.size(); i++) {
             RankBean bean = rankList.get(i);
             left = 0;
-            top = i * (itemRectHeight + bottomTextHeight + itemVeticalSpace);   //item的高度+底部文本的高度+item之间的间距.
-            bottom = top + itemRectHeight;
+            top = i * (topTextHeight + this.itemTopSpace + itemRectHeight + itemVeticalSpace) + topTextHeight;   //顶部文本的高度+item的高度+item之间的间距.
 
             //1.draw left text
-            Paint.FontMetrics leftFontMetrics = paintLeft.getFontMetrics();
             float leftTextBaselineX = left;
-            float leftTextBaselineY = top + itemRectHeight / 2 + ((-leftFontMetrics.ascent) - (leftFontMetrics.descent - leftFontMetrics.ascent) / 2); //ascent为负，dscent为正。
-            canvas.drawText(bean.getOrder(), leftTextBaselineX, leftTextBaselineY, paintLeft);
+            float leftTextBaselineY = top;
+            canvas.drawText(bean.getLabel(), leftTextBaselineX, leftTextBaselineY, paintLeft);
 
-            //2.draw rect with specified color
-            left = left + maxLeftTextWidth + itemHorizontalSpace;   //这里使用最大文本宽度,是为了保证矩形标识条左对齐.
-            right = left + bean.getPxValue();
-            paintRect.setColor(bean.getColor() == 0 ? itemRectColor:bean.getColor());
-            canvas.drawRect(left, top, right, bottom, paintRect);
-
-            //3.draw right text
-            Paint.FontMetrics rightFontMetrics = paintLeft.getFontMetrics();
-            float rightTextBaselineX = left + availableWidth + itemHorizontalSpace;   //使用availableWidth可以保证右边文本左对齐
-            float rightTextBaselineY = top + itemRectHeight / 2 + ((-rightFontMetrics.ascent) - (rightFontMetrics.descent - rightFontMetrics.ascent) / 2); //ascent为负，dscent为正。
+            //2.draw right text
+            float rightTextWidth = paintRight.measureText(bean.getValue());
+            float rightTextBaselineX = left + availableWidth - rightTextWidth;   //保证右边文本右对齐
+            float rightTextBaselineY = top;
             canvas.drawText(bean.getValue(), rightTextBaselineX, rightTextBaselineY, paintRight);
 
-            //4.draw bottom text
-            float bottomTextBaselineX = left;
-            float bottomTextBaselineY = bottom + bottomTextHeight;
-            canvas.drawText(bean.getLabel(), bottomTextBaselineX, bottomTextBaselineY, paintBottom);
+            //3.draw rect under with specified color
+            right = left + availableWidth;
+            top = top + this.itemTopSpace;
+            bottom = top + itemRectHeight;
+            canvas.drawRect(left, top, right, bottom, paintRectUnder);
+
+            //4.draw rect with specified color
+            right = left + bean.getPxValue();
+            paintRect.setColor(bean.getColor() == 0 ? itemRectColor : bean.getColor());
+            canvas.drawRect(left, top, right, bottom, paintRect);
         }
     }
 
@@ -171,23 +162,22 @@ public class RankView extends View {
      * <p>
      * 思路：
      * 1.以最大的value为100，其他的按比例进行缩放；
-     * 2.100对应的像素应该为：RankView自身的宽度-左右两边最大文本宽度-2个水平间距 的剩余可用宽度值。
+     * 2.100对应的像素应该为：RankView自身的宽度。
      *
      * @param width RankView的宽度.
      * @return 最大剩余可用宽度
      */
     private float calculateRectWidth(int width) {
-        float availableWidth = width - maxLeftTextWidth - maxRightTextWidth - 2 * itemHorizontalSpace;
         for (RankBean bean : rankList) {
             //如果正常传参数，是不会发生异常的，以防万一parseFloat.
             try {
                 float value = Float.parseFloat(bean.getValue());
                 float virtualValue = value / maxValue;    //value对于maxValue的占比.
-                bean.setPxValue(virtualValue * availableWidth);
+                bean.setPxValue(virtualValue * width);
             } catch (Exception e) {
             }
         }
-        return availableWidth;
+        return width;
     }
 
     /**
@@ -243,10 +233,7 @@ public class RankView extends View {
 
         if (rankList.size() > 0) {
             this.maxValue = getMaxValue();
-            float[] widths = getMaxTextWidth();
-            this.maxLeftTextWidth = widths[0];
-            this.maxRightTextWidth = widths[1];
-            this.bottomTextHeight = getBottomTextHeight();
+            this.topTextHeight = getTopTextHeight();
 
             //刷新界面,因为我们需要重新走onMeasure(),故调用一下requestLayout(),但它不保证会调用onDraw(),故还需要invalidate()
             requestLayout();
@@ -275,34 +262,13 @@ public class RankView extends View {
     }
 
     /**
-     * 获取集合中左右两边文本的最大宽度.
+     * 获取顶部文本的高度
+     * 顶部文本，左边和右边默认大小一样，故高度也一样。
      *
      * @return
      */
-    private float[] getMaxTextWidth() {
-        float maxLeft = -10000000;
-        float maxRight = -10000000;
-        for (RankBean bean : rankList) {
-            float leftWidth = paintLeft.measureText(bean.getOrder());
-            float rightWidth = paintRight.measureText(bean.getValue());
-            if (leftWidth > maxLeft) {
-                maxLeft = leftWidth;
-            }
-            if (rightWidth > maxRight) {
-                maxRight = rightWidth;
-            }
-        }
-        return new float[]{maxLeft, maxRight};
-    }
-
-    /**
-     * 获取底部文本的高度
-     * 注意：底部文本只能用简短的文本，因为本控件不支持换行.
-     *
-     * @return
-     */
-    private float getBottomTextHeight() {
-        Paint.FontMetrics fontMetrics = paintBottom.getFontMetrics();
+    private float getTopTextHeight() {
+        Paint.FontMetrics fontMetrics = paintLeft.getFontMetrics();
         return fontMetrics.descent - fontMetrics.ascent;
     }
 }

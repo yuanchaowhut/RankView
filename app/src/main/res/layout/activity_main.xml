@@ -11,19 +11,30 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <cn.com.egova.rankview.view.RankView
+        <!--<cn.com.egova.rankview.view.RankView-->
+            <!--android:id="@+id/rank_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:itemBottomTextColor="@android:color/holo_blue_bright"-->
+            <!--app:itemBottomTextSize="16sp"-->
+            <!--app:itemRectHeight="40dp"-->
+            <!--app:itemHorizontalSpace="10dp"-->
+            <!--app:itemLeftTextColor="@android:color/holo_purple"-->
+            <!--app:itemLeftTextSize="16sp"-->
+            <!--app:itemRightTextColor="@android:color/holo_red_dark"-->
+            <!--app:itemRightTextSize="16sp"-->
+            <!--app:itemVeticalSpace="20dp" />-->
+
+        <cn.com.egova.rankview.view.RankViewV2
             android:id="@+id/rank_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:itemBottomTextColor="@android:color/holo_blue_bright"
-            app:itemBottomTextSize="16sp"
+            app:itemTextSize="16sp"
             app:itemRectHeight="40dp"
-            app:itemHorizontalSpace="10dp"
             app:itemLeftTextColor="@android:color/holo_purple"
-            app:itemLeftTextSize="16sp"
             app:itemRightTextColor="@android:color/holo_red_dark"
-            app:itemRightTextSize="16sp"
-            app:itemVeticalSpace="20dp" />
+            app:itemVeticalSpace="10dp" />
 
         <Button
             android:id="@+id/btnFrag"
